@@ -1,88 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<meta charset="UTF-8">
-<meta content="width=device-width,initial-scale=1" name="viewport">
-<title>A&T MENU</title>
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    background: url(https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZjU1Y3RjZDNibmF1ZTB6emRoODA2YmV5djEwa3JuZmNhOGsyMGJxeSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Byour3OgR0nWnRR6Tc/giphy.gif) no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Courier New', Courier, monospace;
-    color: #00bfff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-    text-align: center;
-  }
-  .image-container img {
-    width: 750px;
-    height: auto;
-    border: 2px solid #00bfff;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 255, .7);
-  }
-  .info {
-    margin-top: 20px;
-    font-size: 1.5em;
-    color: #00bfff;
-    text-shadow: 0 0 8px #00bfff, 0 0 15px #00bfff, 0 0 25px #00bfff;
-    letter-spacing: 4.5px;
-    white-space: pre-wrap;
-  }
-  .text {
-    margin-top: 20px;
-    font-size: 3em;
-    color: #00bfff;
-    text-shadow: 0 0 8px #00bfff, 0 0 15px #00bfff, 0 0 25px #00bfff;
-    letter-spacing: 4.5px;
-  }
-</style>
+<head>
+  <meta charset="UTF-8">
+  <title>A&T MENU</title>
+</head>
+<body>
+  <div id="content">
+    <h1 style="color: cyan;">A&T MENU</h1>
+    <audio id="myAudio" autoplay loop>
+      <source src="http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3" type="audio/mpeg">
+    </audio>
+  </div>
 
-<div class="image-container">
-  <img alt="hiii..." src="https://i.ibb.co/1f195MN1/result.png">
-</div>
+  <script>
+    setTimeout(() => {
+      // עוצר את המוזיקה
+      const audio = document.getElementById("myAudio");
+      if (audio) {
+        audio.pause();
+        audio.remove();
+      }
 
-<audio id="myAudio" autoplay loop>
-  <source src="http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-<div class="info" id="ip-info">
-  <strong>IP: <span id="ip"></span></strong><br>
-  <span><strong>City:</strong> <span id="city"></span></span><br>
-  <span><strong>Region:</strong> <span id="region"></span></span><br>
-  <span><strong>Country:</strong> <span id="country"></span></span><br>
-  <span><strong>Location:</strong> <span id="loc"></span></span><br>
-  <span><strong>Organization:</strong> <span id="org"></span></span><br>
-  <span><strong>Timezone:</strong> <span id="timezone"></span></span>
-</div>
-
-<div class="text">A&T MENU</div>
-
-<script>
-  fetch('https://ipinfo.io/json')
-    .then(response => response.json())
-    .then(data => {
-      delete data.readme;
-      const infoDiv = document.getElementById('ip-info');
-      infoDiv.textContent = JSON.stringify(data, null, 2);
-    });
-</script>
-
-<script>
-  // אחרי 10 שניות – להפסיק את הסאונד ולמחוק את כל התוכן
-  setTimeout(() => {
-    const audio = document.getElementById("myAudio");
-    if (audio) {
-      audio.pause();
-      audio.remove();
-    }
-    document.body.innerHTML = ""; // מוחק את כל מה שיש בדף
-    document.body.style.background = "black"; // מסך שחור
-  }, 10000); // 10 שניות
-</script>
+      // מוחק את התוכן ומחזיר למסך ריק (שזה בעצם "חזרה רגילה" ב־FiveM)
+      document.body.innerHTML = "";
+    }, 10000); // 10 שניות
+  </script>
+</body>
 </html>
